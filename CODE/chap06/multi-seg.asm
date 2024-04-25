@@ -1,35 +1,45 @@
-assume cs:code 
+assume cs:code, ds:data, ss:stack 
 
-code segment 
-
-
+data segment
     dw 0123h, 0456h, 0789h, 0abch, 0defh, 0fedh, 0cbah, 0987h
-    dw 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-    ; dw define 16 words data
-    ; as a stack 
+data ends
 
-    start: mov ax, cs
+stack segment
+    dw 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+stack ends
+
+code segment
+
+    start:
+    mov ax, stack 
     mov ss, ax
-    mov sp, 30h
+    mov sp, 20h
+
+    mov ax, data
+    mov ds, ax
 
     mov bx, 0
     mov cx, 8
 
     s:
-    push cs:[bx]
+    push [bx]
     add bx, 2
     loop s
 
     mov bx, 0
+
     mov cx, 8
 
     s0:
-    pop cs:[bx]
+    pop [bx]
     add bx, 2
     loop s0
 
     mov ax, 4c00h
     int 21h
 
-code ends 
+code ends
+
 end start
+
+

@@ -9,7 +9,7 @@ code segment
 
     s:
     mov ds:[bx], bl
-    ; why not :
+    ; why not : because ax is adder, bx is base addr reg
     ; mov ds:[ax], al
     ; inc ax
     inc bx
