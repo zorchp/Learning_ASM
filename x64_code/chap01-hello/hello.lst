@@ -1,0 +1,18 @@
+     1                                  section .data
+     2 00000000 68656C6C6F2C20776F-         msg db "hello, world" , 0 ;msg is just a symbol for locate
+     2 00000009 726C6400           
+     3                                      ; msg db "hello, world" , 0xa, 0 ;or add 0xa to add newline, strlen  = 13
+     4                                  section .bss
+     5                                  section .text
+     6                                      global main
+     7                                  main:
+     8 00000000 B801000000                  mov rax, 1
+     9 00000005 BF01000000                  mov rdi, 1
+    10 0000000A 48BE-                       mov rsi, msg
+    10 0000000C [0000000000000000] 
+    11 00000014 BA0C000000                  mov rdx, 12 ; len(string)
+    12                                  
+    13 00000019 0F05                        syscall ; show string
+    14 0000001B B83C000000                  mov rax, 60
+    15 00000020 BF00000000                  mov rdi, 0
+    16 00000025 0F05                        syscall; exit
