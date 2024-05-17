@@ -6,6 +6,7 @@ section .data
     fmt2    db "The reversed string: %s", 10, 0
 
 section .bss
+section .note.GNU-stack
 section .text
     global main
 

@@ -10,51 +10,52 @@
      6 00000031 673A2025730A00     
      7                                  
      8                                  section .bss
-     9                                  section .text
-    10                                      global main
-    11                                  
-    12                                  main:
-    13 00000000 55                          push rbp
-    14 00000001 4889E5                      mov rbp, rsp
-    15                                  
-    16                                      ;; print origin string
-    17 00000004 48BF-                       mov rdi, fmt1
-    17 00000006 [0600000000000000] 
-    18 0000000E 48BE-                       mov rsi, strng
-    18 00000010 [0000000000000000] 
-    19 00000018 B800000000                  mov rax, 0
-    20 0000001D E8(00000000)                call printf
-    21                                  
-    22                                      ;; push to stack char-wise
-    23 00000022 4831C0                      xor rax, rax ;; clear rax
-    24 00000025 48BB-                       mov rbx, strng
-    24 00000027 [0000000000000000] 
-    25 0000002F B905000000                  mov rcx, strngLen 
-    26 00000034 41BC00000000                mov r12, 0 ;; make r12 as pointer
-    27                                      pushLoop:
-    28 0000003A 428A0423                        mov al, byte [rbx+r12] ;mov string to rax
-    29 0000003E 50                              push rax
-    30 0000003F 49FFC4                          inc r12
-    31 00000042 E2F6                            loop pushLoop
-    32                                  
-    33                                      ;; pop 
-    34 00000044 48BB-                       mov rbx, strng 
-    34 00000046 [0000000000000000] 
-    35 0000004E B905000000                  mov rcx, strngLen
-    36 00000053 41BC00000000                mov r12, 0
-    37                                      popLoop:
-    38 00000059 58                              pop rax
-    39 0000005A 42880423                        mov byte [rbx+r12], al
-    40 0000005E 49FFC4                          inc r12
-    41 00000061 E2F6                            loop popLoop
-    42 00000063 42C6042300                      mov byte [rbx+r12], 0
-    43                                  
-    44 00000068 48BF-                       mov rdi, fmt2
-    44 0000006A [1F00000000000000] 
-    45 00000072 48BE-                       mov rsi, strng
-    45 00000074 [0000000000000000] 
-    46 0000007C B800000000                  mov rax, 0
-    47 00000081 E8(00000000)                call printf
-    48 00000086 4889EC                      mov rsp, rbp
-    49 00000089 5D                          pop rbp
-    50 0000008A C3                          ret
+     9                                  section .note.GNU-stack
+    10                                  section .text
+    11                                      global main
+    12                                  
+    13                                  main:
+    14 00000000 55                          push rbp
+    15 00000001 4889E5                      mov rbp, rsp
+    16                                  
+    17                                      ;; print origin string
+    18 00000004 48BF-                       mov rdi, fmt1
+    18 00000006 [0600000000000000] 
+    19 0000000E 48BE-                       mov rsi, strng
+    19 00000010 [0000000000000000] 
+    20 00000018 B800000000                  mov rax, 0
+    21 0000001D E8(00000000)                call printf
+    22                                  
+    23                                      ;; push to stack char-wise
+    24 00000022 4831C0                      xor rax, rax ;; clear rax
+    25 00000025 48BB-                       mov rbx, strng
+    25 00000027 [0000000000000000] 
+    26 0000002F B905000000                  mov rcx, strngLen 
+    27 00000034 41BC00000000                mov r12, 0 ;; make r12 as pointer
+    28                                      pushLoop:
+    29 0000003A 428A0423                        mov al, byte [rbx+r12] ;mov string to rax
+    30 0000003E 50                              push rax
+    31 0000003F 49FFC4                          inc r12
+    32 00000042 E2F6                            loop pushLoop
+    33                                  
+    34                                      ;; pop 
+    35 00000044 48BB-                       mov rbx, strng 
+    35 00000046 [0000000000000000] 
+    36 0000004E B905000000                  mov rcx, strngLen
+    37 00000053 41BC00000000                mov r12, 0
+    38                                      popLoop:
+    39 00000059 58                              pop rax
+    40 0000005A 42880423                        mov byte [rbx+r12], al
+    41 0000005E 49FFC4                          inc r12
+    42 00000061 E2F6                            loop popLoop
+    43 00000063 42C6042300                      mov byte [rbx+r12], 0
+    44                                  
+    45 00000068 48BF-                       mov rdi, fmt2
+    45 0000006A [1F00000000000000] 
+    46 00000072 48BE-                       mov rsi, strng
+    46 00000074 [0000000000000000] 
+    47 0000007C B800000000                  mov rax, 0
+    48 00000081 E8(00000000)                call printf
+    49 00000086 4889EC                      mov rsp, rbp
+    50 00000089 5D                          pop rbp
+    51 0000008A C3                          ret
