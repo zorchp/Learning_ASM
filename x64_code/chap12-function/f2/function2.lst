@@ -24,15 +24,15 @@
     21                                  
     22                                  circum:
     23                                  section .data
-    24 00000010 1F85EB51B81E0940            .pi dq 3.14 ;; local varible of circum
+    24 00000010 1F85EB51B81E0940            pi dq 3.14 ;; local varible of circum
     25                                  section .text
     26 00000021 55                          push rbp
     27 00000022 4889E5                      mov rbp, rsp
     28 00000025 F20F100425-                 movsd xmm0, [radius]
     28 0000002A [00000000]         
-    29 0000002E F20F590425-                 mulsd xmm0, [radius]
+    29 0000002E F20F580425-                 addsd xmm0, [radius]
     29 00000033 [00000000]         
-    30 00000037 F20F590425-                 mulsd xmm0, [.pi]
+    30 00000037 F20F590425-                 mulsd xmm0, [pi]
     30 0000003C [10000000]         
     31 00000040 C9                          leave
     32 00000041 C3                          ret
@@ -61,10 +61,9 @@
     50 00000079 C3                          ret
     51                                  
     52                                  
-    53                                      global main
-    54                                  main:
-    55 0000007A 55                          push rbp 
-    56 0000007B 4889E5                      mov rbp, rsp
-    57 0000007E E8BFFFFFFF                  call circle
-    58 00000083 C9                          leave 
-    59 00000084 C3                          ret
+    53                                  main:
+    54 0000007A 55                          push rbp 
+    55 0000007B 4889E5                      mov rbp, rsp
+    56 0000007E E8BFFFFFFF                  call circle
+    57 00000083 C9                          leave 
+    58 00000084 C3                          ret

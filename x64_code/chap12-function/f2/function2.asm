@@ -26,7 +26,7 @@ section .text
     push rbp
     mov rbp, rsp
     movsd xmm0, [radius]
-    mulsd xmm0, [radius]
+    addsd xmm0, [radius]
     mulsd xmm0, [.pi]
     leave
     ret
@@ -50,7 +50,6 @@ section .text
     ret
 
 
-    global main
 main:
     push rbp 
     mov rbp, rsp
